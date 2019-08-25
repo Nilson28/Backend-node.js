@@ -5,36 +5,36 @@ import inscripciones from './inscripciones';
 import encuestas from './encuestas';
 
 const usuarios = sequelize.define('usuarios', {
-    idusuario:{
-       type: Sequelize.TEXT,
+    id_usuario:{
+       type: Sequelize.STRING(30),
        primaryKey: true
     },
-    nomusuario:{
-        type: Sequelize.TEXT
+    nom_usuario:{
+        type: Sequelize.STRING(30)
     },
     correo:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     },
     telefono:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     },
-    contraseña:{
-        type: Sequelize.TEXT
+    pass:{
+        type: Sequelize.STRING(30)
     },
     sexo:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     },
     tipo:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     }     
 },{
     timestamps: false
     });
 
-usuarios.hasMany(inscripciones, {foreinKey: 'idusuario', sourceKey: 'idusuario'});
-inscripciones.belongsTo(usuarios, {foreingKey: 'idusuario', sourceKey: 'idusuario'});
-usuarios.hasMany(encuestas, {foreinKey: 'idusuario', sourceKey: 'idusuario'});
-encuestas.belongsTo(usuarios, {foreinKey: 'idusuario', sourceKey: 'idusuario'});
+usuarios.hasMany(inscripciones, {foreinKey: 'id_usuario', sourceKey: 'id_usuario'});
+inscripciones.belongsTo(usuarios, {foreingKey: 'id_usuario', sourceKey: 'id_usuario'});
+usuarios.hasMany(encuestas, {foreinKey: 'id_usuario', sourceKey: 'id_usuario'});
+encuestas.belongsTo(usuarios, {foreinKey: 'id_usuario', sourceKey: 'id_usuario'});
 
 
 export default usuarios;

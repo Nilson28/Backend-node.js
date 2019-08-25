@@ -4,32 +4,32 @@ import {sequelize} from '../database/database';
 import conferencias from './conferencias';
 
 const conferencistas = sequelize.define('conferencistas', {
-    idconferencista:{
-        type: Sequelize.TEXT,
+    id_conferencista:{
+        type: Sequelize.STRING(30),
         primaryKey: true
     },
-    nomconferencista:{
-        type: Sequelize.TEXT
+    nom_conferencista:{
+        type: Sequelize.STRING(30)
     }, 
     correo:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     }, 
     telefono:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     }, 
     especialidad:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     }, 
     sexo:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     }, 
     estado:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     }
 });
 
-conferencistas.hasMany(conferencias, {foreinKey: 'idconferencista', sourceKey: 'idconferencista'});
-conferencias.belongsTo(conferencistas, {foreinKey: 'idconferencista', sourceKey: 'idconferencista'});
+conferencistas.hasMany(conferencias, {foreinKey: 'id_conferencista', sourceKey: 'id_conferencista'});
+conferencias.belongsTo(conferencistas, {foreinKey: 'id_conferencista', sourceKey: 'id_conferencista'});
 
 
 export default conferencistas;

@@ -3,20 +3,20 @@ import {sequelize} from '../database/database';
 
 
 const inscripciones = sequelize.define( 'inscripciones',{
-    codigoconferencia:{
+    codigo_conferencia:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    idusuario:{
+    id_usuario:{
         type: Sequelize.INTEGER,
         primarykey: true
     },
-    fecharegistro:{
+    fecha_registro:{
         type: 'TIMESTAMP',
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
     estado:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     }
 });
 

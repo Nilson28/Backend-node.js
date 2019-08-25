@@ -3,15 +3,15 @@ import {sequelize} from '../database/database';
 
 
 const eventos = sequelize.define( 'eventos',{
-    codigoEvento:{
+    codigo_evento:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    nombreEvento:{
-        type: Sequelize.TEXT
+    nombre_evento:{
+        type: Sequelize.STRING(30)
     },	
     denpendecia:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     },
     fechainicio:{
         type: Sequelize.DATE

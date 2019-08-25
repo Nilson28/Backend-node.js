@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
 export const sequelize = new Sequelize(
-    'eventosUnivalle',
+    'EventosUnivalle',
     'Nilson',
     '1234',
     {

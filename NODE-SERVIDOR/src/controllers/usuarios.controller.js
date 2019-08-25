@@ -1,18 +1,18 @@
 import usuarios from '../models/usuarios';
 
 export async function createUsuarios(req, res){
-    const {idusuario, nomusuario, correo, telefono, contraseña, sexo, tipo} = req.body;
+    const {id_usuario, nom_usuario, correo, telefono, pass, sexo, tipo} = req.body;
     try{
         let newUsuario = await usuarios.create({
-            idusuario,
-            nomusuario,
+            id_usuario,
+            nom_usuario,
             correo,
             telefono,
-            contraseña,
+            pass,
             sexo,
             tipo
         },{
-            fields: ['idusuario', 'nomusuario', 'correo', 'telefono', 'contraseña', 'sexo', 'tipo']
+            fields: ['id_usuario', 'nom_usuario', 'correo', 'telefono', 'pass', 'sexo', 'tipo']
         });
         if(newUsuario){
             return res.json({
@@ -38,10 +38,10 @@ export async function consultUsuarios(req, res){
 
 export async function oneUsuario(req, res){
     try{
-        const {idUsuario} = request.params;
+        const {id_usuario} = request.params;
         const usuario = await usuarios.findOne({
             where:{
-                idUsuario
+                id_usuario
             }
         })
         res.json({
@@ -54,13 +54,13 @@ export async function oneUsuario(req, res){
 
 export async function consultarLogin(req, res){
     
-    const {idusuario, contraseña} = req.body;
+    const {id_usuario, pass} = req.body;
     try{
         const tipoUsuario = await usuarios.findOne({
             attributes: ['tipo'],
             where:{
-                idusuario,
-                contraseña
+                id_usuario,
+                pass
             }
         });
         if(tipoUsuario){

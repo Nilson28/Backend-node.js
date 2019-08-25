@@ -4,19 +4,19 @@ import {sequelize} from '../database/database';
 import conferencias from './conferencias';
 
 const espacios = sequelize.define('espacios', {
-    codigoEspacio:{
+    codigo_espacio:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    nomEspacio:{
-        type: Sequelize.TEXT
+    nom_espacio:{
+        type: Sequelize.STRING(30)
     },
     capacidad:{
         type: Sequelize.INTEGER
     }	
 });
 
-espacios.hasMany(conferencias, {foreinKey: 'codigoespacio', sourceKey: 'codigoespacio'});
-conferencias.belongsTo(espacios, {foreingKey: 'codigoespacio', sourceKey: 'codigoespacio'});
+espacios.hasMany(conferencias, {foreinKey: 'codigo_espacio', sourceKey: 'codigo_espacio'});
+conferencias.belongsTo(espacios, {foreingKey: 'codigo_espacio', sourceKey: 'codigo_espacio'});
 
 export default espacios;

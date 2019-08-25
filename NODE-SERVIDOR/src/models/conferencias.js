@@ -5,23 +5,23 @@ import inscripciones from './inscripciones';
 import encuestas from './encuestas';
 
 const conferencias = sequelize.define('conferencias', {
-    codigoconferencia:{
+    codigo_conferencia:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    nombreconferencia:{
-        type: Sequelize.TEXT
+    nombre_conferencia:{
+        type: Sequelize.STRING(30)
     }, 
     cupo:{
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(30)
     },
-    codigoevento:{
+    codigo_evento:{
         type: Sequelize.INTEGER
     }, 
-    idconferencista:{
-        type: Sequelize.TEXT
+    id_conferencista:{
+        type: Sequelize.STRING(30)
     }, 
-    codigoespacio:{
+    codigo_espacio:{
         type: Sequelize.INTEGER
     }, 
     inicio:{
@@ -34,9 +34,9 @@ const conferencias = sequelize.define('conferencias', {
     } 
 });
 
-conferencias.hasMany(inscripciones, {foreinKey: 'codigoconferencia', sourceKey: 'codigoconferencia'});
-inscripciones.belongsTo(conferencias, {foreingKey: 'codigoconferencia', sourceKey: 'codigoconferencia'});
-conferencias.hasMany(encuestas, {foreinKey: 'codigoconferencia', sourceKey: 'codigoconferencia'});
-encuestas.belongsTo(conferencias, {foreinKey: 'codigoconferencia', sourceKey: 'codigoconferencia'});
+conferencias.hasMany(inscripciones, {foreinKey: 'codigo_conferencia', sourceKey: 'codigo_conferencia'});
+inscripciones.belongsTo(conferencias, {foreingKey: 'codigo_conferencia', sourceKey: 'codigo_conferencia'});
+conferencias.hasMany(encuestas, {foreinKey: 'codigo_conferencia', sourceKey: 'codigo_conferencia'});
+encuestas.belongsTo(conferencias, {foreinKey: 'codigo_conferencia', sourceKey: 'codigo_conferencia'});
 
 export default conferencias;

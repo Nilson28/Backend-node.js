@@ -8,9 +8,11 @@ import usuariosRoutes from './routes/usuarios';
 
 
 //initialization
+var cors = require('cors');
 const app = express();
 
 //middelwares
+app.use(cors());
 app.use(morgan('dev'));
 app.use(json());
 

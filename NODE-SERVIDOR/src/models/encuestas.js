@@ -3,15 +3,15 @@ import {sequelize} from '../database/database';
 
 
 const encuestas = sequelize.define( 'encuestas',{
-    codigoconferencia:{
+    codigo_conferencia:{
         type: Sequelize.INTEGER,
         primaryKey: true
     },
-    idusuario:{
+    id_usuario:{
         type: Sequelize.INTEGER,
         primarykey: true
     },
-    fechaencuesta:{
+    fecha_encuesta:{
         type: 'TIMESTAMP',
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
