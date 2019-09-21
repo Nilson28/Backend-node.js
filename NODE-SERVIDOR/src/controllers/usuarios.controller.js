@@ -16,10 +16,13 @@ export async function createUsuarios(req, res){
         });
         if(newUsuario){
             return res.json({
-                data: newUsuario
+                message: "true"
             });
+        }else{
+            return res.json({
+                message: "false"
+            })
         }
-        res.send('received');
     }catch(e){
         console.log(e);
     }
@@ -38,18 +41,58 @@ export async function consultUsuarios(req, res){
 
 export async function oneUsuario(req, res){
     try{
-        const {id_usuario} = request.params;
+        const {id_usuario} = req.body;
         const usuario = await usuarios.findOne({
+            
             where:{
                 id_usuario
             }
         })
         res.json({
-            data: usuario
+            usuario
         })
     }catch(e){
         console.log(e);
     }
+}
+
+export async function deleteUsuario(req, res){
+    const {id_usuario} = req.body;
+    const deleteRowCount = await usuarios.destroy({
+        where:{
+            id_usuario
+        }
+    });
+    res.json({
+        message: "usuario eliminado"
+    })
+}
+
+export async function updateUsuaios(req, res){
+    const {id_usuario} = req.params
+    const{nom_usuario, correo, telefono, pass, sexo} = req.body;
+    usuarios.findAll({
+        attributes: ['id_usuario', 'nom_usuario', 'correo', 'telefono', 'pass', 'sexo', 'tipo'],
+        where:{
+            id_usuario
+        }
+    });
+    const update = await usuarios.update({
+        nom_usuario,
+        correo,
+        telefono,
+        pass,
+        sexo
+    },
+    {
+        where:{
+            id_usuario
+        }
+    });
+    return res.json({
+         message: "modificado"
+    }) 
+
 }
 
 export async function consultarLogin(req, res){
@@ -57,14 +100,14 @@ export async function consultarLogin(req, res){
     const {id_usuario, pass} = req.body;
     try{
         const tipoUsuario = await usuarios.findOne({
-            attributes: ['tipo'],
+            attributes: ['tipo', 'id_usuario'],
             where:{
                 id_usuario,
                 pass
             }
         });
         if(tipoUsuario){
-            return res.send(tipoUsuario);
+            return res.send(tipoUsuario, id_usuario);
         }else
              return res.json(null);
     }catch(e){
@@ -75,6 +118,4 @@ export async function consultarLogin(req, res){
         });
     }
 }
-
-
 
